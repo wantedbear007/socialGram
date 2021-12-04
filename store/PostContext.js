@@ -1,22 +1,28 @@
 import {createContext, useState} from 'react';
+import DummyData from '../screens/DummyData';
+import React from 'react';
 
 const PostContext = createContext({
   image: [],
   text: [],
+  addText: text => {},
 });
 
-const PostContextProvider = props => {
+export function PostContextProvider(props) {    
   const [postImages, setPostImages] = useState([]);
   const [postText, setPostText] = useState([]);
 
-  const AddImages = (pictures) => {
-      
+  const AddImagesHandler = pictures => {};
+  const AddTextHandler = texts => {
+    setPostText(prePostText => {
+      return prePostText.concat(texts);
+    });
   };
-  const AddText = (texts) => {};
 
   const context = {
     image: postImages,
     text: postText,
+    addText: AddTextHandler,
   };
 
   return (
@@ -24,4 +30,6 @@ const PostContextProvider = props => {
       {props.children}
     </PostContext.Provider>
   );
-};
+}
+
+export default PostContext;

@@ -1,12 +1,36 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
+import colors from '../assets/Colors';
+import TopHeader from '../components/TopHeader';
+import PostContext from '../store/PostContext';
 
-const AddText = () => {
+const AddText = ({navigation}) => {
+  const [word, setWord] = useState('');
+  const contextState = useContext(PostContext);
+ 
+    const buttonHandler = () => {
+       return [navigation.navigate('Home'), contextState.addText(word)]
+    }
+
   return (
     <View>
-      <Text>This is AddText page.</Text>
+      <TopHeader title="Text" buttonHandler={buttonHandler} />
+      <TextInput
+        placeholder="Write content here"
+        multiline={true}
+        style={styles.textInput}
+        onChangeText={word => setWord(word)}
+        value={word}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  textInput: {
+    color: colors.darkGray,
+    paddingHorizontal: 10,
+  },
+});
 
 export default AddText;

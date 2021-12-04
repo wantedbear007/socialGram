@@ -16,9 +16,12 @@ const BottomNav = ({navigation}) => {
 
 const styles = StyleSheet.create({
   parentContainer: {
+    flex: 1,
+    // marginTop: 1,
     position: 'absolute',
-    top: ScreenSize.height - 126,
-    backgroundColor: colors.lightGray,
+    // bottom: 0,
+    top: ScreenSize.height - 70,
+    backgroundColor: colors.grey,
     width: ScreenSize.width,
     alignItems: 'center',
     justifyContent: 'center',
