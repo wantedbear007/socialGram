@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, ToastAndroid} from 'react-native';
 import colors from '../assets/Colors';
 import TopHeader from '../components/TopHeader';
 import PostContext from '../store/PostContext';
@@ -7,14 +7,26 @@ import PostContext from '../store/PostContext';
 const AddText = ({navigation}) => {
   const [word, setWord] = useState('');
   const contextState = useContext(PostContext);
- 
-    const buttonHandler = () => {
-       return [navigation.navigate('Home'), contextState.addText(word)]
-    }
+
+  const buttonHandler = () => {
+    if (word.length === 0) {
+      ToastAndroid.show('Please enter something !', ToastAndroid.SHORT);
+    } else
+      [
+        navigation.navigate('Home'),
+        contextState.addText(word),
+        ToastAndroid.show('Posted Successfully !', ToastAndroid.SHORT),
+      ];
+  };
 
   return (
     <View>
-      <TopHeader title="Text" buttonHandler={buttonHandler} />
+      <TopHeader
+        title="Text"
+        post="Post"
+        buttonHandler={buttonHandler}
+        navigation={navigation}
+      />
       <TextInput
         placeholder="Write content here"
         multiline={true}

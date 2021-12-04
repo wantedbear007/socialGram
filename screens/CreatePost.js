@@ -2,13 +2,17 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Button} from 'react-native';
 import colors from '../assets/Colors';
 import ScreenSize from '../assets/ScreenSize';
+import TopHeader from '../components/TopHeader';
 
 export default CreatePost = ({navigation}) => {
   return (
-    <View style={{marginTop: ScreenSize.height / 3}}>
-      <CreateButton title="Image" navigation={navigation} />
-      <CreateButton title="Text" navigation={navigation}/>
-    </View>
+    <>
+      <TopHeader />
+      <View style={{marginTop: ScreenSize.height / 3}}>
+        <CreateButton title="Image" navigation={navigation} />
+        <CreateButton title="Text" navigation={navigation} />
+      </View>
+    </>
   );
 };
 
