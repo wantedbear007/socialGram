@@ -8,7 +8,7 @@ const BottomNav = ({navigation}) => {
   return (
     <View style={styles.parentContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
-        <Ionicons name="add-circle-outline" size={43} color={colors.black} />
+        <Ionicons name="add-circle-outline" size={43} color={colors.lightGray} />
       </TouchableOpacity>
     </View>
   );
@@ -16,10 +16,7 @@ const BottomNav = ({navigation}) => {
 
 const styles = StyleSheet.create({
   parentContainer: {
-    flex: 1,
-    // marginTop: 1,
     position: 'absolute',
-    // bottom: 0,
     top: ScreenSize.height - 70,
     backgroundColor: colors.grey,
     width: ScreenSize.width,

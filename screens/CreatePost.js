@@ -7,7 +7,7 @@ import TopHeader from '../components/TopHeader';
 export default CreatePost = ({navigation}) => {
   return (
     <>
-      <TopHeader />
+      <TopHeader navigation={navigation} navigateTo={'Home'} />
       <View style={{marginTop: ScreenSize.height / 3}}>
         <CreateButton title="Image" navigation={navigation} />
         <CreateButton title="Text" navigation={navigation} />

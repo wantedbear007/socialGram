@@ -1,9 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../assets/Colors';
 import {Divider} from 'react-native-elements/dist/divider/Divider';
-import PostContext from '../store/PostContext';
 
 const TopHeader = props => {
   return (
@@ -11,8 +10,16 @@ const TopHeader = props => {
       <View style={styles.parentComponent}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('CreatePost')}>
-            <MaterialIcons name="arrow-back" size={30} color={colors.grey} />
+            onPress={() =>
+              props.navigation.navigate(
+                !props.navigateTo ? 'CreatePost' : 'Home',
+              )
+            }>
+            <MaterialIcons
+              name="arrow-back"
+              size={30}
+              color={colors.lightGray}
+            />
           </TouchableOpacity>
           <Text style={{fontSize: 19}}>{props.title}</Text>
         </View>
