@@ -7,9 +7,18 @@ import colors from '../assets/Colors';
 const Home = ({navigation}) => {
   const {content} = useContext(PostContext);
 
+  let post;
+  console.log(content);
+
+  if (content.length === 0) {
+    post = <Text style={styles.noPostMsg}>No post.</Text>;
+  } else {
+    post = <Content content={content} />;
+  }
+
   return (
-    <View>
-      <Content content={content} />
+    <View style={styles.parentComponent}>
+      {post}
       <BottomNav navigation={navigation} />
     </View>
   );
@@ -26,7 +35,7 @@ const Content = ({content}) => {
   );
 };
 
-// FlatList Render
+// FlatList RenderItem
 const FinalRender = ({item}) => {
   return (
     <View style={styles.postContainer}>
@@ -41,6 +50,10 @@ const FinalRender = ({item}) => {
 };
 
 const styles = StyleSheet.create({
+  parentComponent: {
+    marginBottom: 50,
+    flex: 1,
+  },
   postContainer: {
     backgroundColor: colors.white,
     borderBottomWidth: 10,
@@ -58,6 +71,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
     resizeMode: 'contain',
+  },
+  noPostMsg: {
+    fontSize: 17,
+    marginVertical: '80%',
+    textAlign: 'center',
   },
 });
 

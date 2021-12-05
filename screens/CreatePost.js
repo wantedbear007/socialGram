@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Button} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import colors from '../assets/Colors';
 import ScreenSize from '../assets/ScreenSize';
 import TopHeader from '../components/TopHeader';
@@ -7,8 +7,8 @@ import TopHeader from '../components/TopHeader';
 export default CreatePost = ({navigation}) => {
   return (
     <>
-      <TopHeader navigation={navigation} navigateTo={'Home'} />
-      <View style={{marginTop: ScreenSize.height / 3}}>
+      <TopHeader navigation={navigation} navigateTo="Home" />
+      <View style={styles.parentContainer}>
         <CreateButton title="Image" navigation={navigation} />
         <CreateButton title="Text" navigation={navigation} />
       </View>
@@ -27,8 +27,11 @@ const CreateButton = props => {
 };
 
 const styles = StyleSheet.create({
+  parentContainer: {
+    marginTop: ScreenSize.height / 3,
+  },
   buttonContainer: {
-    marginVertical: 5,
+    marginVertical: 10,
     marginHorizontal: ScreenSize.width / 3,
     textAlign: 'center',
   },

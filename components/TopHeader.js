@@ -23,11 +23,11 @@ const TopHeader = props => {
           </TouchableOpacity>
           <Text style={{fontSize: 19}}>{props.title}</Text>
         </View>
-        {props.post && (
+        {!props.navigateTo && (
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={props.buttonHandler}>
-            <Text>{props.post}</Text>
+            <Text>Post</Text>
           </TouchableOpacity>
         )}
       </View>

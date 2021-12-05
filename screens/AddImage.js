@@ -15,18 +15,19 @@ import colors from '../assets/Colors';
 
 const AddImage = ({navigation}) => {
   const {setContent} = useContext(PostContext);
-  const [pic, setPic] = useState();
+  const [picture, setPicture] = useState();
   const [text, setText] = useState();
   const [buttonVisibility, setButtonVisibility] = useState(true);
 
+  // Post button handler
   const buttonHandler = () => {
-    if (!pic) {
+    if (!picture) {
       ToastAndroid.show('Please select an image !', ToastAndroid.SHORT);
     } else
       [
-        setContent({description: text, photo: pic}),
-        navigation.navigate('Home'),
+        setContent({description: text, photo: picture}),
         ToastAndroid.show('Posted Successfully.', ToastAndroid.SHORT),
+        navigation.navigate('Home'),
       ];
   };
 
@@ -35,7 +36,7 @@ const AddImage = ({navigation}) => {
     ImagePicker.openPicker({
       cropping: true,
     }).then(image => {
-      setPic(image.path);
+      setPicture(image.path);
       setButtonVisibility(false);
     });
   };
@@ -44,7 +45,6 @@ const AddImage = ({navigation}) => {
     <View>
       <TopHeader
         title="Image"
-        post="Post"
         navigation={navigation}
         buttonHandler={buttonHandler}
       />
@@ -55,7 +55,7 @@ const AddImage = ({navigation}) => {
         value={text}
       />
       {!buttonVisibility ? (
-        <Image source={{uri: pic}} style={styles.imageContainer} />
+        <Image source={{uri: picture}} style={styles.imageContainer} />
       ) : (
         <UploadButton ChooseImageFromGallery={ChooseImageFromGallery} />
       )}

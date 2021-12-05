@@ -5,13 +5,12 @@ import TopHeader from '../components/TopHeader';
 import PostContext from '../store/PostContext';
 
 const AddText = ({navigation}) => {
-  const Context = useContext(PostContext);
-  const {setContent} = Context;
-  const [text, setText] = useState();
+  const {setContent} = useContext(PostContext);
+  const [text, setText] = useState('');
 
   const buttonHandler = () => {
     if (text.length === 0) {
-      ToastAndroid.show('Please enter something !', ToastAndroid.SHORT);
+      ToastAndroid.show('Please write something !', ToastAndroid.SHORT);
     } else
       [
         setContent({description: text}),
@@ -24,7 +23,6 @@ const AddText = ({navigation}) => {
     <View>
       <TopHeader
         title="Text"
-        post="Post"
         buttonHandler={buttonHandler}
         navigation={navigation}
       />
