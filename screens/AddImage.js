@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {View, Text, Button, Image} from 'react-native';
+import {View, Text, Button, Image, ToastAndroid} from 'react-native';
 import PostContext from '../store/PostContext';
 import ImagePicker from 'react-native-image-crop-picker';
 import TopHeader from '../components/TopHeader';
@@ -10,47 +10,55 @@ const AddImage = ({navigation}) => {
   const {images, setPictures} = Context;
   const [pic, setPic] = useState();
   const [text, setText] = useState();
+  const [buttonVisibility, setButtonVisibility] = useState(true);
 
-  const clickHandler = () => {
+  const buttonHandler = () => {
     let Post = {
       description: text,
       photo: pic,
     };
-    setPictures(Post);
-    console.log(images);
-    navigation.navigate('Home');
+    if (!pic) {
+      ToastAndroid.show('Please select an image !', ToastAndroid.SHORT);
+    } else
+      [
+        setPictures(Post),
+        navigation.navigate('Home'),
+        ToastAndroid.show('Posted Successfully.', ToastAndroid.SHORT),
+      ];
   };
+
+  // For choosing Image from gallery
   const ChooseImageFromGallery = () => {
     ImagePicker.openPicker({
-      width: 300,
-      height: 400,
+      // width: 300,
+      // height: 400,
       cropping: true,
     }).then(image => {
       setPic(image.path);
-      console.log(pic);
+      setButtonVisibility(false);
     });
   };
 
   return (
     <View>
-      <TopHeader title="Image" post="Post" navigation={navigation} />
+      <TopHeader
+        title="Image"
+        post="Post"
+        navigation={navigation}
+        buttonHandler={buttonHandler}
+      />
       <TextInput
         placeholder="Write content here."
         multiline={true}
         onChangeText={text => setText(text)}
         value={text}
       />
-      <Button title="upload" onPress={ChooseImageFromGallery} />
-      <Button title="click" onPress={clickHandler} />
+      {!buttonVisibility ? (
+        <Image source={{uri: pic}} style={{width: '100%', height: 300}} />
+      ) : (
+        <Button title="upload" onPress={ChooseImageFromGallery} />
+      )}
     </View>
-
-    /* <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-
-      <Button title="upload" onPress={ChooseImageFromGallery} />
-
-      <Button title="click" onPress={clickHandler} />
-    </View>
-  ); */
   );
 };
 

@@ -1,5 +1,4 @@
 import {createContext, useState} from 'react';
-import DummyData from '../screens/DummyData';
 import React from 'react';
 
 const PostContext = createContext({

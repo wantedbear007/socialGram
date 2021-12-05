@@ -7,6 +7,7 @@ import PostContext from '../store/PostContext';
 const AddText = ({navigation}) => {
   const [word, setWord] = useState('');
   const contextState = useContext(PostContext);
+  
 
   const buttonHandler = () => {
     if (word.length === 0) {
