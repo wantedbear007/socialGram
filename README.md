@@ -1,4 +1,5 @@
 # socialGram
 Assignment for internship.
 
-![](/screenshort.png)
+<img src="/screenshort.png" width="270" height="561.5">
+
