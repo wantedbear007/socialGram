@@ -8,7 +8,15 @@ const PostContext = createContext({
   addText: text => {},
 });
 
-export function PostContextProvider(props) {    
+export function PostContextProvider(props) {
+  const postData = [
+    {
+      description: 'Forest',
+      photo:
+        'https://images.news18.com/ibnlive/uploads/2021/03/1616320439_international-day-of-forests-shutterstock.jpg?im=FitAndFill,width=1200,height=900',
+      
+    },
+  ];
   const [postImages, setPostImages] = useState([]);
   const [postText, setPostText] = useState([]);
 
@@ -25,8 +33,14 @@ export function PostContextProvider(props) {
     addText: AddTextHandler,
   };
 
+  const [images, setImages] = useState(postData);
+
+  const setPictures = (pic) => {
+    setImages(prev => [...prev, pic])
+  }
+
   return (
-    <PostContext.Provider value={context}>
+    <PostContext.Provider value={{images, setPictures}}>
       {props.children}
     </PostContext.Provider>
   );
